@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <style media="screen">
+      .hide
+      {
+        display:none;
+      }
+      .show
+      {
+        display:inline-block;
+      }
+      .container
+      {
+        top:50px;
+      }
+    .navbar-default
+      {
+        background-color:#B83227;
+        text-align:center;
+      }
+      .navbar-brand
+      {
+        color:white;
+      }
+      .input
+      {
+        background:#B83227;
+      }
+    </style>
+    <script type="text/javascript">
+      function onButtonClick(){
+      document.getElementById('textInput').className="show";
+    }
+    </script>
+    <nav class="navbar-default">
+      <a class="navbar-brand" href="#">Todo App</a>
+    </nav>
+    <div class=" container alert alert-dark" role="alert">
+<div class="row">
+
+<div class="col-lg-6">
+
+
+    <ol>
+    {%for item in studentlist%}
+
+      <li>{{item.Task}}</li>
+      <br>
+      <form class=""  action="delete/"  method="get">
+        <!-- {% csrf_token %} -->
+        <button type="submit" class="btn btn-danger" name="delete" value="{{ item.id }}">Delete</button>
+      </form>
+      <br>
+
+
+
+      <form class="" action="update/" method="post">
+        {% csrf_token %}
+          <button type="submit" class="btn btn-danger" name="update" value="{{ item.id }}">Update</button>
+        <br>
+        <textarea name="Task" value="" rows="3" cols="25"></textarea>
+
+      </form>
+    <br>
+    {%  endfor%}
+    </ol>
+  </div>
+    <div class="col-lg-6">
+
+    <form class="" action="" method="post">
+      {% csrf_token %}
+      <h5>Task</h5>
+
+      <textarea name="Task" value="" rows="3" cols="25"></textarea>
+      <br>
+      <br>
+      <input class="input" type="submit" name="Addvalue" value="Add">
+    </form>
+
+  </div>
+
+</div>
+    </div>
+  </body>
+</html>
